@@ -2,7 +2,7 @@
 * @Author: yanhoor
 * @Date:   2017-10-16 14:45:04
 * @Last Modified by:   yanhoor
-* @Last Modified time: 2017-10-17 11:08:12
+* @Last Modified time: 2017-10-18 00:12:53
 */
 var postFile={
 	init: function(){
@@ -85,8 +85,8 @@ var postFile={
 		cover.fillRect(0, 0, t.imgWidth, t.imgHeight);
 		cover.clearRect(t.sx, t.sy, t.sHeight, t.sWidth);
 
-		document.getElementById('show_edit').style.background = 'url(' + t.imgUrl + ')' + -t.sx + 'px' + -t.sy + 'px no-repeat';
-		
+		document.getElementById('show_edit').style.background = 'url(' + t.imgUrl + ')' + -t.sx + 'px' + -t.sy 
+		+ 'px no-repeat';
 		document.getElementById('show_edit').style.height = t.sHeight + 'px';
 		document.getElementById('show_edit').style.width = t.sWidth + 'px';
 	},
@@ -108,7 +108,7 @@ var postFile={
 
 				this.onmousedown = function(){
 					draging = true;
-					t.ex = t.sx;
+					t.ex = t.sx;	//记录上一次截图的坐标
 					t.ey = t.sy;
 
 					startX = e.pageX - (t.regional.offsetLeft + this.offsetLeft);
@@ -120,7 +120,7 @@ var postFile={
 
 				if (draging) {
 
-					if (t.ex + (pageX - startX) < 0) {
+					if (t.ex + (pageX - startX) < 0) {	//移动时裁剪区域的坐标 = 上次记录的位置 + （当前鼠标的位置 - 按下鼠标的位置）
 						t.sx = 0;
 					}else if (t.ex + (pageX - startX) + t.sWidth > t.imgWidth) {
 						t.sx = t.imgWidth - t.sWidth;
